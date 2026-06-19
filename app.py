@@ -12,7 +12,7 @@ CACHE_DURATION = 600  # 10 minutes cache
 def get_jobs_data(force_refresh=False):
     global cached_jobs, last_fetched_time
     current_time = time.time()
-    
+
     # Refresh if cache is empty, expired, or force_refresh is True
     if not cached_jobs or (current_time - last_fetched_time > CACHE_DURATION) or force_refresh:
         print("[App] Fetching fresh job listings...")
@@ -53,10 +53,5 @@ def api_refresh():
         "jobs": jobs
     })
 
-if __name__ == '__main__':
-    # Initialize cache on start
-    print("[App] Warm-up job cache...")
-    get_jobs_data()
-    
-    print("[App] Starting Flask server on port 5000...")
-    app.run(host='127.0.0.1', port=5000, debug=True)
+# Vercel exports the Flask app as a WSGI callable "app" automatically.
+# No need for the __main__ block; Vercel will handle the server lifecycle.
