@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Engineering job listings skill extractor and tutorial mapping aggregator dashboard. Learn SQL, Python, Spark, and Airflow from GeeksforGeeks and W3Schools tutorials.">
+    <title>DE Skill Tracker - Data Engineering Jobs & Skill Aggregator</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Site Header -->
+        <header>
+            <div class="logo-section">
+                <h1>DE Skill Tracker</h1>
+                <p>Data Engineering Job Aggregator & Skill Tutorial Navigator</p>
+            </div>
+            <div class="header-controls">
+                <span id="update-timestamp" style="font-size: 0.8rem; color: var(--text-muted);">Syncing...</span>
+                <button id="refresh-btn" class="btn" title="Refetches live job posts and clears cache">
+                    <svg class="sync-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                    </svg>
+                    Sync Listings
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Layout -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Sidebar: Skill Demand & Tutorial Mapping -->
+            <aside class="sidebar panel">
+                <div class="panel-title">
+                    <span>Common Skills Matrix</span>
+                    <span id="skills-total-count">0 Skills</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.4;">
+                    Click a skill to filter jobs. Follow the tutorial tags to study the concepts on GeeksforGeeks (GFG) and W3Schools (W3S).
+                </p>
+                <div id="skills-container" class="skills-list">
+                    <!-- Skills will be rendered by JS -->
+                    <div class="loader-container" style="padding: 2rem 0;">
+                        <div class="spinner" style="width: 30px; height: 30px;"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Panel: Jobs Feed & Search controls -->
+            <main class="main-content">
+                <div class="panel">
+                    
+                    <!-- Search & Filter Controls -->
+                    <div class="listings-header">
+                        <div class="search-wrapper">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="search-box" class="search-input" placeholder="Search by title, company, or keywords...">
+                        </div>
+                        <div class="filter-wrapper">
+                            <select id="platform-filter" class="filter-select">
+                                <option value="all">All Platforms</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="arbeitnow">Arbeitnow</option>
+                                <option value="reddit">Reddit</option>
+                                <option value="naukri">Naukri</option>
+                            </select>
+                            
+                            <button id="clear-filters-btn" class="btn btn-secondary" style="display: none; padding: 0.75rem 1rem;">
+                                Clear Filters
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Listings Container -->
+                    <div id="jobs-container" class="jobs-feed">
+                        <!-- Jobs will be rendered by JS -->
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <p style="margin-top: 1rem;">Fetching Data Engineering job posts...</p>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2026 DE Skill Tracker Dashboard. Created in collaboration with Antigravity AI.</p>
+            <p style="margin-top: 0.4rem; font-size: 0.75rem;">This tool correlates extracted skills with open educational assets to streamline self-directed professional development in Data Engineering.</p>
+        </footer>
+    </div>
+
+    <!-- Main JS Application script -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
